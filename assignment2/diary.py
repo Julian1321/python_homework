@@ -10,7 +10,7 @@ try:
                 first_entry = False
             
             else:
-                entry = input("what else? ")
+                entry = input("What else? ")
 
             file.write(entry + "\n")
 
