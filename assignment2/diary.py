@@ -6,7 +6,7 @@ try:
 
         while True:
             if first_entry:
-                entry = input("What happended today? ")
+                entry = input("What happened today? ")
                 first_entry = False
             
             else:

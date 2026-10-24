@@ -92,8 +92,8 @@ def get_this_value():
 
 import custom_module
 
-def set_that_secret(value):
-    custom_module.secret = value
+def set_that_secret(new_secret):
+    custom_module.set_secret(new_secret)
 
 def read_minutes():
 
