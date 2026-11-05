@@ -1,21 +1,29 @@
 from functools import wraps
 
-def type_decorator(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        new_args = [int(arg) for arg in args]
-        
-        new_kwargs = {
-            key: int(value)
-            for key, value in kwargs.items()
-        }
+def type_converter(type_of_output):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return type_of_output(result)
+        return wrapper
+    return decorator
 
-        return func(*new_args, **new_kwargs)
 
-    return wrapper
+@type_converter(str)
+def return_int():
+    return 123
 
-@type_decorator
-def add_numbers(a, b):
-    return a + b
 
-print(add_numbers("5", "3"))
+@type_converter(int)
+def return_string():
+    return "hello"
+
+if __name__ == "__main__":
+    print(return_int())
+    print(type(return_int()))
+
+    try:
+        print(return_string())
+    except ValueError as e:
+        print("ValueError caught:", e)

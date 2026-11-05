@@ -17,7 +17,23 @@ def logger_decorator(func):
     return wrapper
 
 @logger_decorator
-def add_numbers(a, b):
-    return a + b
+def say_hello():
+    print("Hello!")
 
-print(add_numbers(5, 3))
+
+@logger_decorator
+def check_numbers(*args):
+    print("Numbers:", args)
+    return True
+
+
+@logger_decorator
+def get_decorator(**kwargs):
+    print("Keyword arguments:", kwargs)
+    return logger_decorator
+
+
+if __name__ == "__main__":
+    say_hello()
+    check_numbers(1, 2, 3)
+    get_decorator(name="Julian", course="Python")
